@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.swiper.com.cn/demo/02-responsive.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>手机左右滑动效果</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="./demo/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: transparent;
+
+        /* Center slide text vertically */
+        /*display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;*/
+    }
+    @media screen and (max-width : 319px){
+            .portal-btn {
+                border: 1px solid #8ABE4A;
+                cursor: pointer;
+                padding: 15px 40px;
+                border-radius: 5px;
+                color: #8ABE4A;
+            }
+            .portal-btn-group {
+                display: inline-block;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+            .portal-btn-group:first-child {
+                top:18%!important;
+            }
+            .portal-btn-group:nth-child(2) {
+                top:35%!important;
+            }
+            .portal-btn-group:nth-child(3) {
+                top:52%!important;
+            }
+            .portal-btn-group:nth-child(4) {
+                top:70%!important;
+            }
+            .portal-btn > img {
+                position: relative;
+                right: 15px;
+                top: 10px;
+            }
+        }
+        @media screen and (min-width: 320px) and (max-width : 479px){
+            .portal-btn {
+                border: 1px solid #8ABE4A;
+                cursor: pointer;
+                padding: 20px 65px;
+                border-radius: 5px;
+                color: #8ABE4A;
+            }
+            .portal-btn-group {
+                display: inline-block;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+            .portal-btn-group:first-child {
+                top:20%!important;
+            }
+            .portal-btn-group:nth-child(2) {
+                top:39%!important;
+            }
+            .portal-btn-group:nth-child(3) {
+                top:58%!important;
+            }
+            .portal-btn-group:nth-child(4) {
+                top:79%!important;
+            }
+            .portal-btn > img {
+                position: relative;
+                right: 15px;
+                top: 10px;
+            }
+        }
+        @media screen and (min-width: 480px){
+            .portal-btn {
+                border: 1px solid #8ABE4A;
+                cursor: pointer;
+                padding: 25px 65px;
+                border-radius: 5px;
+                color:#8ABE4A;
+            }
+            .portal-btn-group {
+                display: inline-block;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+            .portal-btn-group:first-child {
+                top:20%!important;
+            }
+            .portal-btn-group:nth-child(2) {
+                top:39%!important;
+            }
+            .portal-btn-group:nth-child(3) {
+                top:58%!important;
+            }
+            .portal-btn-group:nth-child(4) {
+                top:79%!important;
+            }
+            .portal-btn > img {
+                position: relative;
+                right: 15px;
+                top: 10px;
+            }
+        }
+        #tiaokuan{
+            display: none;
+            width: 100%;
+            height: 100%;
+            position:absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 999;
+            background:#fff;
+            color: #777;
+            padding: 0;
+            margin: 0;
+        }
+        .swiper-pagination {
+            display: none !important;
+        }
+        /*.bt-nav {position: absolute; z-index: 999; height: 50px; background: #000000 url(./demo/road.png); background-size:100% 50px; width: 100%; line-height: 50px; bottom: 0px; left:0; color: #FFF;}*/
+        .bt-nav {position: absolute; z-index: 999; height: 50px; width: 100%; line-height: 50px; bottom: 0px; left:0; color: #FFF;}
+        .car { height: 50px; position: absolute; right: 0;}
+        /*.portal-img { padding-bottom: 90px; }*/
+
+        .jiathis_style_32x32 .jtico { background: none!important;}
+        .jiathis_style_32x32 .jtico_weixin { background: rgba(0, 0, 0, 0) url("${resSys}/tz/tz/pics/share_2.png") no-repeat scroll 0 0 / 64px auto!important;}
+        .jiathis_style_32x32 .jtico_qzone { background: rgba(0, 0, 0, 0) url("${resSys}/tz/tz/pics/share_3.png") no-repeat scroll 0 0 / 64px auto!important;}
+        .jiathis_style_32x32 .jtico_cqq { background: rgba(0, 0, 0, 0) url("${resSys}/tz/tz/pics/share_4.png") no-repeat scroll 0 0 / 64px auto!important;}
+        .jiathis_style_32x32 .jtico_tsina { background: rgba(0, 0, 0, 0) url("${resSys}/tz/tz/pics/share_5.png") no-repeat scroll 0 0 / 64px auto!important;}
+
+    </style>
+</head>
+<body>
+
+
+    <!-- Swiper -->
+    <div class="swiper-container swiper-container-horizontal" style="background: #fff url(./demo/road0.png);background-position:bottom center; background-size:100% 50px; background-repeat: no-repeat;">
+        <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+            <div class="swiper-slide">
+                
+                <div class="bt-nav">
+                    <img class="car" src="demo/yellow.png" >
+                    <!-- 上网请向左划(1) -->
+                </div>
+                <!-- <iframe src="http://www.tmall.com" width="100%" height="100%" scrolling="no" frameborder="0" style="position: absolute;  left:0; right:0; top:0; bottom:0;"></iframe> -->
+                <a class="" href="http://www.jd.com" ><img class="portal-img" width='100%' src="./demo/2.png" /></a>
+                <!-- <iframe src="http://m.taobao.com" width="100%" height="100%" frameborder="0" style="position: absolute;  left:0; right:0; top:0; bottom:0;" ></iframe> -->
+                 
+            </div>
+            <div class="swiper-slide">
+                
+                <div class="bt-nav">
+                    <img class="car" src="demo/blue.png" >
+                    <!-- 上网请向左划(2) -->
+                </div>
+                <!-- <iframe src="http://m.jd.com" width="100%" height="100%" frameborder="0" style="position: absolute;  left:0; right:0; top:0; bottom:0;" ></iframe> -->
+                <a class="" href="http://www.jd.com"  target="_blank"><img class="portal-img" width='100%' src="./demo/2.png" /></a>
+                <!-- <iframe src="http://www.tmall.com" width="100%" height="100%" scrolling="no" frameborder="0" style="position: absolute;  left:0; right:0; top:0; bottom:0;"></iframe> -->
+                
+            </div>
+            <div class="swiper-slide" >
+                
+                <div class="bt-nav">
+                    <img class="car" src="demo/red.png" >
+                </div>
+                <a class="" href="http://www.jd.com"  target="_blank"><img class="portal-img" width='100%' src="./demo/2.png" /></a>
+            </div>
+            <div class="swiper-slide">
+                
+                <div class="bt-nav">
+                    <img class="car" src="demo/white.png" >
+                </div>
+                <a class="" href="https://www.taobao.com"  target="_blank"><img class="portal-img" width='100%' src="./demo/3.png" /></a>
+            </div>
+            <div class="swiper-slide" style="background:#fff;">
+                <div style="position: absolute; top:0; left:0; right:0;"><img src="demo/cloud.png" width="100%"></div>
+                <div style="position: absolute; bottom:0; left:0; right:0;"><img src="demo/grass.png" width="100%" ></div>
+                <div style="background:#fff; min-height: 500px;">
+                    
+                    <div class="portal-btn-group" style="top: 100px;">
+                        <span class="portal-btn"><img width="30" src="demo/portal01.png"> 一键上网 </span>
+                    </div>
+                    <div class="portal-btn-group" style="top: 200px;">
+                        <span class="portal-btn"><img width="30" src="demo/portal02.png"> 短信认证 </span>
+                    </div>
+                    <div class="portal-btn-group" style="top: 300px;">
+                        <span class="portal-btn"><img width="30" src="demo/portal03.png"> 微信认证 </span>
+                    </div>
+                    <div class="portal-btn-group" style="top: 440px;">
+                        <input type="checkbox" checked="true" /> 我已阅读并同意<a href="javascript:;" id="tiaokuanlink" style="color: #86BC45; text-decoration: none;">上网服务条款</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-clickable">
+            <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+        </div>
+    </div>
+    <div id="tiaokuan">
+        <div style="border-bottom: 1px solid #ccc; height: 50px;"><span style="float: left; font-size: 30px; line-height: 50px; padding-left: 20px;"><a id="back" href="javascript:;" style="text-decoration: none; color: #87BD42;">&lt;</a></span></div>
+        <div style=" padding: 10px 20px;">
+            <p style="text-align: center;"> 上网条款 </p>
+            <p>1、本网络为免费网络，不向用户个人收取任何费用。</p>
+            <p>2、用户上网时请遵守国家相关法律，禁止访问非法、不良网站。</p>
+            <p>3、严禁散布、传播违法信息。若因用户在使用本网络时的行为产生危害公共安全、损害公共利益、侵害他人正当权益等后果，由用户自行承担相应的法律责任。</p>
+            <p>4、为确保网络安全，用户登录网络所使用的手机号码将作为实名认证的依据。</p>
+        </div>
+    </div>
+
+    <script src="./demo/jquery-1.11.0.js"></script>
+    <!-- Swiper JS -->
+    <script src="./demo/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    $(function(){
+
+        var height = (window.innerHeight > 0) ? window.innerHeight : screen.height; 
+
+        $("iframe").attr("height",height-50);
+        $(".portal-img").attr("height", height-50);
+
+        $(window).resize(function(){
+            var height = (window.innerHeight > 0) ? window.innerHeight : screen.height; 
+
+            $("iframe").attr("height",height-50);
+            $(".portal-img").attr("height", height-50);
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            onSlideChangeEnd: function(swiper){
+                console.log(swiper);
+                $(".swiper-container").css("backgroundImage","url(./demo/road"+swiper.activeIndex+".png)");
+                isEnd();
+            }
+        });
+
+        function isEnd(){
+            if(swiper.isEnd){
+                swiper.lockSwipeToNext();
+            } else {
+                swiper.unlockSwipeToNext();
+            }
+        }
+
+        $("#tiaokuanlink").click(function(){
+            $("#tiaokuan").show();
+        });
+
+        $("#back").click(function(){
+            $("#tiaokuan").hide();
+        });
+    })
+    </script>
+
+</body></html>

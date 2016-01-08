@@ -85,33 +85,31 @@ class Wifidog extends CI_Controller {
 		
 		if ($this->form_validation->run() === FALSE)
 		{
+			
 			if(!empty($_GET))
 			{
+				
 				$data['gw_address'] = $_GET['gw_address'];
-				$data['gw_port'] 	= $_GET['gw_port'];
-				$data['gw_id'] 		= $_GET['gw_id'];
-				$data['url'] 		= $_GET['url'];				
-				$data['mac'] 		= $_GET['mac'];
-				$data['ip']			= $_GET['ip'];
-
-				$_SESSION['url'] 		= $_GET['url'];
-				$_SESSION['gw_port'] 	= $_GET['gw_port'];
+				$data['gw_port'] = $_GET['gw_port'];
+				$data['gw_id'] = $_GET['gw_id'];
+				$data['url'] = $_GET['url'];				
+				$_SESSION['url'] = $_GET['url'];
+				$_SESSION['gw_port'] = $_GET['gw_port'];
 				$_SESSION['gw_address'] = $_GET['gw_address'];
 				
-			}
-			else
-			{
+			}else{
 				$data['gw_address'] = '';
-				$data['gw_port'] 	= '';
-				$data['gw_id'] 		= '';
-				$data['url'] 		= '';	
-				$data['mac'] 		= '';
-				$data['ip']			= '';
+				$data['gw_port'] = '';
+				$data['gw_id'] = '';
+				$data['url'] = '';	
 			}
 			$data['form_url'] = base_url('wifidog/login');
 			           
 			//服务器验证页面
-			$this->load->view('wifidog_login/demo', $data);
+			if($this->is_mobile)
+				$this->load->view('wifidog_login/wifidog_login_mobile',$data);
+			else
+				$this->load->view('wifidog_login/wifidog_login_pc',$data);
        	}
 		else
 		{
@@ -127,29 +125,13 @@ class Wifidog extends CI_Controller {
 			}else{
 				//不成功仍旧返回登录页面
 				$data[$debug] = '登录失败';
-				$this->load->view('wifidog_login/demo',$data);
+                if($this->is_mobile)
+					$this->load->view('wifidog_login/wifidog_login_mobile',$data);
+                else
+                    $this->load->view('wifidog_login/wifidog_login_pc',$data);
 			}
 		}
-	}
-	
-	// liudf 20151230
-	// added for weixin auth
-	public function weixin_auth()
-	{	
-		redirect('http://'.$_GET['gw_address'].':'.$_GET['gw_port'].'/wifidog/auth?token='.$_GET['openId'], 'location', 302);
-
-	}
-	
-	public function onekeynet_auth()
-	{	
-		redirect('http://'.$_GET['gw_address'].':'.$_GET['gw_port'].'/wifidog/auth?token='.md5(uniqid(rand(), 1)), 'location', 302);
-	}
-		
-	public function phone_auth()
-	{
-		redirect('http://'.$_GET['gw_address'].':'.$_GET['gw_port'].'/wifidog/auth?token='.md5(uniqid(rand(), 1)), 'location', 302);
-	}
-
+	}	
 	/**
      * 认证接口
      */
@@ -170,7 +152,7 @@ class Wifidog extends CI_Controller {
 		*/
 		
 		
-		$stage = $_GET['stage'];
+		$stage = $_GET['stage'] == 'counters'?'counters':'login';
 		if($stage == 'login')
         {
 			//XXXX跳过login 阶段的处理XXXX不能随便跳过的
@@ -216,7 +198,7 @@ class Wifidog extends CI_Controller {
 		*/
 		
 		//重定到指定网站 或者 显示splash广告页面		
-		redirect('https://www.baidu.com/', 'location', 302);
+		redirect('http://www.baidu.com', 'location', 302);
 			
 	}
     
